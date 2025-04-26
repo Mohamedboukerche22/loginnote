@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Education Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Register</h1>
+        <form action="register.php" method="POST">
+            <div class="form-group">
+                <label for="user-type">Register as:</label>
+                <select id="user-type" name="user_type" required>
+                    <option value="">Select...</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
+            </div>
+            
+            <div id="teacher-code-group" class="form-group" style="display:none;">
+                <label for="teacher_code">Teacher Registration Code:</label>
+                <input type="password" id="teacher_code" name="teacher_code">
+                <small>Contact administrator to get the teacher registration code</small>
+            </div>
+            
+            <button type="submit">Register</button>
+        </form>
+        
+        <p>Already have an account? <a href="index.html">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById('user-type').addEventListener('change', function() {
+            const teacherCodeGroup = document.getElementById('teacher-code-group');
+            if (this.value === 'teacher') {
+                teacherCodeGroup.style.display = 'block';
+            } else {
+                teacherCodeGroup.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
