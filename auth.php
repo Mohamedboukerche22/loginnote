@@ -14,20 +14,15 @@ if ($user_type === 'teacher') {
         die("Invalid teacher code. Please try again.");
     }
 }
-
-// Check user credentials
 $stmt = $db->prepare("SELECT id, password FROM users WHERE email = ? AND user_type = ?");
 $stmt->execute([$email, $user_type]);
 $user = $stmt->fetch();
 
 if ($user) {
-    // Verify password (in production, use password_verify())
     if ($password === $user['password']) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_type'] = $user_type;
         $_SESSION['email'] = $email;
-        
-        // Redirect based on user type
         header("Location: " . ($user_type === 'student' ? 'student.php' : 'teacher.php'));
         exit();
     } else {
