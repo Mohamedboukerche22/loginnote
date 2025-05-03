@@ -1,9 +1,9 @@
 <?php
 // db_config.php
-$host = 'sql313.hstn.me';
-$dbname = 'mseet_38835548_education_portal';
-$username = 'mseet_38835548';
-$password = 'adda28011968'; 
+$host = 'localhost';
+$dbname = 'bass';
+$username = 'admin';
+$password = 'admin'; 
 
 try {
     $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
