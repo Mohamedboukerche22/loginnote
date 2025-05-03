@@ -10,15 +10,11 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SESSION['user_type'] !== 'student') {
     die("Access denied. This page is for students only.");
 }
-
-// Fetch student's courses
 $stmt = $db->prepare("SELECT c.title FROM enrollments e 
                      JOIN courses c ON e.course_id = c.id 
                      WHERE e.student_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $courses = $stmt->fetchAll();
-
-// Fetch assignments
 $stmt = $db->prepare("SELECT a.title, a.due_date FROM assignments a
                      JOIN enrollments e ON a.course_id = e.course_id
                      WHERE e.student_id = ? AND a.due_date > NOW()
